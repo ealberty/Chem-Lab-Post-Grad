@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6757b231cedd544c583ef8aeaf773b2a
+AssetOrigin:
+  serializedVersion: 1
+  productId: 63067
+  packageName: Obi Fluid
+  packageVersion: 7.0.4
+  assetPath: Assets/Obi/Scripts/Common/Collisions/ObiCollider.cs
+  uploadId: 715637
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

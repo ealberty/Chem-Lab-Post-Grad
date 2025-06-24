@@ -1980,11 +1980,11 @@ public class doCertainThingWith : MonoBehaviour
                 else if (closestScoopableObject.GetComponent<weighboatscript>()){ // get aluminum out of weighboat
                     if (closestScoopableObject.GetComponent<weighboatscript>().scoopsHeld > 0){
                         //Debug.Log("retrieving aluminum from weighboat");
-                        if (closestScoopableObject.GetComponent<weighboatscript>().solutionMakeup.SequenceEqual(new List<float> { 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 0f, 0f })){  // get aluminum
+                        if (closestScoopableObject.GetComponent<weighboatscript>().solutionMakeup.SequenceEqual(new List<float> { 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 0f, 0f, 0f })){  // get aluminum
                             //Debug.Log("for real");
                             StartCoroutine(pickUpAluminum(closestScoopableObject, scoopula));
                         }
-                        else if (closestScoopableObject.GetComponent<weighboatscript>().solutionMakeup != new List<float> { 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f }){  //get arbitrary substance
+                        else if (closestScoopableObject.GetComponent<weighboatscript>().solutionMakeup != new List<float> { 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f }){  //get arbitrary substance
                             StartCoroutine(pickUpArbitrarySolid(closestScoopableObject, scoopula));
                         }
                     }
@@ -2008,8 +2008,8 @@ public class doCertainThingWith : MonoBehaviour
         scoopula.transform.Find("Aluminum").gameObject.SetActive(true);
         //scoopula.transform.Find("Sugar Powder").gameObject.SetActive(false);
         //closestWeighBoat.GetComponent<liquidScript>().addSolution(new List<float> { 0f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 0f, 0f }, 0.7407f);  // Add 0.37 mL of Aluminum
-        Debug.Log(scoopula.GetComponent<ScoopulaScript>().solutionMakeup);
-        Debug.Log(closestScoopableObject.GetComponent<weighboatscript>().solutionMakeup);
+        //Debug.Log(scoopula.GetComponent<ScoopulaScript>().solutionMakeup);
+        //Debug.Log(closestScoopableObject.GetComponent<weighboatscript>().solutionMakeup);
         scoopula.GetComponent<ScoopulaScript>().solutionMakeup = closestScoopableObject.GetComponent<weighboatscript>().solutionMakeup;
         closestScoopableObject.GetComponent<weighboatscript>().removeScoop();
         closestScoopableObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 0.0001f, ForceMode.Impulse);

@@ -601,7 +601,7 @@ public class progessTracker : MonoBehaviour
             yield return null;
         }
         nextButtonClicked = false;
-        content.text = "Turn on the sink to draw air out of the Buchner flask and create a vacuum. This vacuum will draw any fluids out of the paper filter cone into the flask, essentially drying the crystals. Pour ethanol over the solution in the paper cone as you filter it to wash the crystals and draw out impurities.";
+        content.text = "Turn on the sink to draw air out of the Buchner flask and create a vacuum. This vacuum will draw any fluids out of the paper filter cone into the flask, essentially drying the crystals. Pour ethanol (from the vent by the closet) over the solution in the paper cone as you filter it to wash the crystals and draw out impurities.";
         while (!nextButtonClicked){
             yield return null;
         }

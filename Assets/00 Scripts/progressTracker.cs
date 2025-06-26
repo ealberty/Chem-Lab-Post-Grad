@@ -42,6 +42,16 @@ public class progessTracker : MonoBehaviour
     public multihandler theMULTIHANDLER;
     public GameObject giveWalterSolutionText;
     public GameObject teacher;
+    public GameObject equipmentPanel;
+    public GameObject InstrumentTitle;
+    public Sprite gogglesPic;
+    public Image Image1;
+    public Image Image2;
+    public Image Image3;
+    public TextMeshProUGUI Text1;
+    public TextMeshProUGUI Text2;
+    public TextMeshProUGUI Text3;
+
 
     // Initialize the first state
     private void Start()
@@ -53,14 +63,22 @@ public class progessTracker : MonoBehaviour
         nextButton = popUpPanel.transform.Find("Next Button").GetComponent<Button>();
         nextButton.onClick.AddListener(nextButtonClick);
         content = popUpPanel.transform.Find("content").GetComponent<TextMeshProUGUI>();
+        equipmentPanel = popUpPanel.transform.Find("Equipment Panel").gameObject;
+        InstrumentTitle = popUpPanel.transform.Find("Instruments Title").gameObject;
+        Image1 = equipmentPanel.transform.GetChild(0).GetComponent<Image>();
+        Image2 = equipmentPanel.transform.GetChild(1).GetComponent<Image>();
+        Image3 = equipmentPanel.transform.GetChild(2).GetComponent<Image>();
+        Text1 = equipmentPanel.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        Text2 = equipmentPanel.transform.GetChild(4).GetComponent<TextMeshProUGUI>();
+        Text3 = equipmentPanel.transform.GetChild(5).GetComponent<TextMeshProUGUI>();
         player = GameObject.Find("Player");
         Pause = Canvases.transform.Find("Pause Canvas").gameObject;
         GameObject Notebook = Pause.transform.Find("Notebook").gameObject;
         GameObject Scroll = Notebook.transform.Find("Scroll View").gameObject;
         GameObject View = Scroll.transform.Find("Viewport").gameObject;
         scrollContent = View.transform.Find("Content").gameObject;
+        gogglesPic = Resources.Load<Sprite>("GogglesPic");
         theMULTIHANDLER = GameObject.FindGameObjectWithTag("GameController").GetComponent<multihandler>();
-
         currentState = LabState.safetyCheck;
         DisplayCurrentState();
         StartCoroutine(Intro());
@@ -401,6 +419,17 @@ public class progessTracker : MonoBehaviour
         yield return new WaitForSeconds(1.8f);
         popUpPanel.SetActive(true);
         GetComponent<multihandler>().ToggleCursor();
+        Image1.gameObject.SetActive(true);
+        if (gogglesPic != null)
+        {
+            Image1.sprite = gogglesPic;
+        }
+        else
+        {
+            Debug.LogError("Sprite not found. Check path and settings.");
+        }
+        Image1.sprite = gogglesPic;
+        Text1.text = "Safety Goggles";
         content.text = "Hello There! My name is Walter. Welcome to the Synthesis of Alum Lab! If you have any questions, press T on your keyboard and I would be happy to assist you.";
         while (!nextButtonClicked){
             yield return null;
@@ -416,6 +445,8 @@ public class progessTracker : MonoBehaviour
             yield return null;
         }
         nextButtonClicked = false;
+        Image1.gameObject.SetActive(false);
+        Text1.text = "";
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();
     }

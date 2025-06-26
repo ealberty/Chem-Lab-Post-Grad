@@ -184,12 +184,6 @@ public class pickUpObjects : MonoBehaviour
                 }
             }
 
-            /* if (other.name == "Stir Rod"){
-                initialHoldingDistance = 1.3f;
-                if (GetComponent<doCertainThingWith>().isRodInBeaker == true)
-                    GetComponent<doCertainThingWith>().removeStirRod(other);
-            } */
-
             if (other.name == "Small Stir Rod") {
                 initialHoldingDistance = 1.3f;
                 if (GetComponent<doCertainThingWith>().isSmallRodInBeaker == true)
@@ -297,10 +291,22 @@ public class pickUpObjects : MonoBehaviour
 
         if (other.name == "Scoopula"){
             string contents = "";
-            if (other.transform.Find("Aluminum").gameObject.activeInHierarchy){
+            string usage = "";
+            if (other.transform.Find("Aluminum").gameObject.activeInHierarchy)
+            {
                 contents = "Aluminum";
+                usage = "Right click to drop contents.";
             }
-            multiHandlerScript.setHelpText("Scoopula: \nContains: " + contents + "\nRight click on aluminum container to use.");
+            else if (other.transform.Find("Sugar Powder").gameObject.activeInHierarchy)
+            {
+                contents = "Unknown Substance";
+                usage = "Right click to drop contents.";
+            }
+            else
+            {
+                usage = "Right click on Aluminum to use.";
+            }
+            multiHandlerScript.setHelpText("Scoopula: \nContains: " + contents + "\n" + usage);
             if (GetComponent<doCertainThingWith>().tryingToMixCompoundsInNonLiquidHolder){
                 multiHandlerScript.setHelpText("It looks like you are trying to mix two different types of compounds in a non-mixing container. This is not allowed. Try using a clean dish");
             }
@@ -324,49 +330,6 @@ public class pickUpObjects : MonoBehaviour
         }
 
         if (other.name.StartsWith("Beaker") || other.name.StartsWith("Erlenmeyer Flask") || other.name.StartsWith("Paper Cone") || other.name.StartsWith("Buchner Flask")){
-            /* if (other.transform.Find("Melting Point Tool") != null)
-            {
-                if (Input.GetMouseButton(1))
-                {
-                    if (other.transform.Find("Melting Point Tool") != null)
-                    {
-                        GameObject meltingPointTool = other.transform.Find("Melting Point Tool").gameObject;
-                        GameObject capillaryTube = meltingPointTool.transform.Find("Capilary tube (1)")?.gameObject;
-
-                        if (capillaryTube != null)
-                        {
-                            liquidScript capillaryLiquid = capillaryTube.GetComponent<liquidScript>();
-                            liquidScript beakerLiquid = other.GetComponent<liquidScript>();
-
-                            if (capillaryLiquid != null && beakerLiquid != null)
-                            {
-                                float waterTemp = beakerLiquid.liquidTemperature - 273.15f; // Convert from Kelvin to Celsius
-                                float meltingPoint = capillaryLiquid.GetMeltingPoint(); // Assume a method to fetch melting point
-
-                                // Approximate heating process (simple interpolation)
-                                float heatTransferRate = 0.05f; // Adjust this for realism
-                                float capillaryTemp = Mathf.Lerp(25f, waterTemp, Time.timeSinceLevelLoad * heatTransferRate);
-
-                                string helpText;
-                                if (capillaryTemp < meltingPoint)
-                                {
-                                    helpText = $"Heating up... Current Temperature: {capillaryTemp:F1}°C";
- 
-                                }
-                                else
-                                {
-                                    helpText = $"Melting point reached! The substance is melting at {meltingPoint:F1}°C.";
-                                }
-                                multiHandlerScript.setHelpText(helpText);
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    multiHandlerScript.setHelpText($"This is a {other.GetComponent<liquidScript>().totalVolume_mL} mL beaker. Hold right click to observe its contents. You can also hold P to pour into another container.");
-                }
-                */
             if (Input.GetMouseButton(1))
             {
                 string helpText = "Contents: \n";

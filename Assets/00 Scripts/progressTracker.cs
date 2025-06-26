@@ -544,7 +544,7 @@ public class progessTracker : MonoBehaviour
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
         GetComponent<multihandler>().ToggleCursor();
-        content.text = "Good work! The filtering looks like it went well. Now, measure out 30 mL of sulfuric acid or H<sub>2</sub>SO<sub>4</sub> into a graduated cylinder as you did in step 2 and add this to an empty beaker. Add your filtered solution to this same beaker. Then, you can stir the solution to break down solids and drive it faster. ";
+        content.text = "Good work! The filtering looks like it went well. Now, measure out 30 mL of sulfuric acid or H<sub>2</sub>SO<sub>4</sub> into a graduated cylinder as you did in step 2 and add this to an empty beaker (bottom right drawer of each desk). Add your filtered solution to this same beaker. Then, you can stir the solution to break down solids and drive it faster. ";
         while (!nextButtonClicked){
             yield return null;
         }

@@ -248,8 +248,8 @@ public class progessTracker : MonoBehaviour
 
             case LabState.Step3:
                 GameObject[] liquidHolders2 = GameObject.FindGameObjectsWithTag("LiquidHolder");
-                if (Input.GetKeyDown(KeyCode.C))
-                    TransitionToNextState();
+                //if (Input.GetKeyDown(KeyCode.C))
+                //    TransitionToNextState();
 
                 foreach (GameObject obj in liquidHolders2)
                 {
@@ -264,8 +264,8 @@ public class progessTracker : MonoBehaviour
 
             case LabState.Step4:
                 GameObject[] liquidHolders3 = GameObject.FindGameObjectsWithTag("LiquidHolder");
-                if (Input.GetKeyDown(KeyCode.C))
-                    TransitionToNextState();
+                //if (Input.GetKeyDown(KeyCode.C))
+                //    TransitionToNextState();
 
                 foreach (GameObject obj in liquidHolders3)
                 {
@@ -279,8 +279,8 @@ public class progessTracker : MonoBehaviour
                 break;
 
             case LabState.Step5:
-                if (Input.GetKeyDown(KeyCode.C))
-                        TransitionToNextState();
+                //if (Input.GetKeyDown(KeyCode.C))
+                //        TransitionToNextState();
                 GameObject[] liquidHolders4 = GameObject.FindGameObjectsWithTag("LiquidHolder");
 
                 foreach (GameObject obj in liquidHolders4)
@@ -293,8 +293,8 @@ public class progessTracker : MonoBehaviour
                 break;
 
             case LabState.Step6:
-                if (Input.GetKeyDown(KeyCode.C))
-                        TransitionToNextState();
+                //if (Input.GetKeyDown(KeyCode.C))
+                //        TransitionToNextState();
                 GameObject[] liquidHolders5 = GameObject.FindGameObjectsWithTag("LiquidHolder");
 
                 foreach (GameObject obj in liquidHolders5)
@@ -307,8 +307,8 @@ public class progessTracker : MonoBehaviour
                 break;
 
             case LabState.Step7:
-                if (Input.GetKeyDown(KeyCode.C))
-                        TransitionToNextState();
+                //if (Input.GetKeyDown(KeyCode.C))
+                //        TransitionToNextState();
                 GameObject[] liquidHolders6 = GameObject.FindGameObjectsWithTag("LiquidHolder");
 
                 foreach (GameObject obj in liquidHolders6)
@@ -321,8 +321,8 @@ public class progessTracker : MonoBehaviour
                 break;
 
             case LabState.Step8:
-                if (Input.GetKeyDown(KeyCode.C))
-                        TransitionToNextState();
+                //if (Input.GetKeyDown(KeyCode.C))
+                //        TransitionToNextState();
                 GameObject[] liquidHolders7 = GameObject.FindGameObjectsWithTag("LiquidHolder");
 
                 foreach (GameObject obj in liquidHolders7)
@@ -335,8 +335,8 @@ public class progessTracker : MonoBehaviour
                 break;
 
             case LabState.Step9:
-                if (Input.GetKeyDown(KeyCode.C))
-                        TransitionToNextState();
+                //if (Input.GetKeyDown(KeyCode.C))
+                //        TransitionToNextState();
                 GameObject[] liquidHolders8 = GameObject.FindGameObjectsWithTag("LiquidHolder");
 
                 foreach (GameObject obj in liquidHolders8)
@@ -349,8 +349,8 @@ public class progessTracker : MonoBehaviour
                 break;
 
             case LabState.Step10:
-                if (Input.GetKeyDown(KeyCode.C))
-                        TransitionToNextState();
+                //if (Input.GetKeyDown(KeyCode.C))
+                //        TransitionToNextState();
                 // GameObject[] liquidHolders9 = GameObject.FindGameObjectsWithTag("LiquidHolder");
                 bool playerHoldingLiquidCont = player.GetComponent<pickUpObjects>().other && player.GetComponent<pickUpObjects>().other.tag == "LiquidHolder";
 
@@ -368,8 +368,8 @@ public class progessTracker : MonoBehaviour
                 break;
 
             case LabState.Finished:
-                if (Input.GetKeyDown(KeyCode.C))
-                    TransitionToNextState();
+                //if (Input.GetKeyDown(KeyCode.C))
+                //    TransitionToNextState();
                 // Mark the lab as completed, maybe show results or feedback
                 Debug.Log("checking melting point.");
                 if (player.GetComponent<doCertainThingWith>().meltingPointToolPlaced == true){

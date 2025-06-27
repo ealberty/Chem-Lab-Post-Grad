@@ -162,7 +162,7 @@ public class pickUpObjects : MonoBehaviour
             }
 
             if (other.name == "Capillary tube"){
-                initialHoldingDistance = 3f;
+                initialHoldingDistance = 5f;
             }
 
             if (other.name == "Bunsen Burner")

@@ -319,7 +319,7 @@ public class doCertainThingWith : MonoBehaviour
             if (obj.name.StartsWith("Paper Cone")){
                 BringObjectCloser(-1.5f);
             }
-
+            
             if (obj.name == "Bunsen Burner")
                 manipulateBunsenBurner();
         }

@@ -831,7 +831,7 @@ public class progessTracker : MonoBehaviour
         Image1.sprite = Resources.Load<Sprite>("capillaryTube");
         Image2.sprite = Resources.Load<Sprite>("thermometer");
         Image3.sprite = Resources.Load<Sprite>("rubberBand");
-        Text1.text = "Capillary Tube";
+        Text1.text = "Capilary Tube";
         Text2.text = "Thermometer";
         Text3.text = "Rubber Band";
 
@@ -865,7 +865,7 @@ public class progessTracker : MonoBehaviour
         Text1.text = "";
         Text2.text = "";
         Text3.text = "";
-        
+
         nextButtonClicked = false;
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();

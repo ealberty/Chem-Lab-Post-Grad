@@ -451,23 +451,58 @@ public class progessTracker : MonoBehaviour
         GetComponent<multihandler>().ToggleCursor();
     }
 
-    IEnumerator Step1(){
+    IEnumerator Step1()
+    {
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
+
+        //Equipment pannel Stuff
+        Image1.gameObject.SetActive(true);
+        Image2.gameObject.SetActive(true);
+        Image3.gameObject.SetActive(true);
+        Image1.sprite = Resources.Load<Sprite>("weighBoat");
+        Image2.sprite = Resources.Load<Sprite>("Scoopula");
+        Image3.sprite = Resources.Load<Sprite>("Flask");
+        Text1.text = "Weigh Boat";
+        Text2.text = "Scoopula";
+        Text3.text = "Erlenmeyer Flask";
+
         GetComponent<multihandler>().ToggleCursor();
         content.text = "Congratulations! Your eyes are now protected from hazardous chemicals. Now to begin the experiment. Weigh out about 1 g of aluminum metal onto a weigh boat by placing the weigh boat on the scale and clicking the tare button to set the scale to zero. Then grab the scoopula and right click near the jar of aluminum pellets and pour the aluminum from the weigh boat into the 250 mL Erlenmeyer flask. The flasks can be found in the drawers of the desks. ";
-        while (!nextButtonClicked){
+        while (!nextButtonClicked)
+        {
             yield return null;
         }
         nextButtonClicked = false;
+
+        //turn off equipment panel stuff
+        Image1.gameObject.SetActive(false);
+        Image2.gameObject.SetActive(false);
+        Image3.gameObject.SetActive(false);
+        Text1.text = "";
+        Text2.text = "";
+        Text3.text = "";
+
         popUpPanel.SetActive(false);
         theMULTIHANDLER.PauseOrUnpause();
         GetComponent<multihandler>().ToggleCursor();
+        
     }
 
     IEnumerator Step2(){
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
+
+        //Equipment pannel Stuff
+        Image1.gameObject.SetActive(true);
+        Image2.gameObject.SetActive(true);
+        Image3.gameObject.SetActive(false);
+        Image1.sprite = Resources.Load<Sprite>("graduatedCyllinder");
+        Image2.sprite = Resources.Load<Sprite>("pipette");
+        Text1.text = "Graduated Cyllinder";
+        Text2.text = "Pipette";
+        Text3.text = "";
+
         GetComponent<multihandler>().ToggleCursor();
         float aluminumVol = step1Erlenmeyer.GetComponent<liquidScript>().currentVolume_mL;
         float aluminumGrams = aluminumVol * 2.7f;
@@ -487,6 +522,15 @@ public class progessTracker : MonoBehaviour
             yield return null;
         }
         nextButtonClicked = false;
+
+        //turn off equipment panel stuff
+        Image1.gameObject.SetActive(false);
+        Image2.gameObject.SetActive(false);
+        Image3.gameObject.SetActive(false);
+        Text1.text = "";
+        Text2.text = "";
+        Text3.text = "";
+
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();
     }
@@ -495,6 +539,18 @@ public class progessTracker : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
+
+        //Equipment pannel Stuff
+        Image1.gameObject.SetActive(true);
+        Image2.gameObject.SetActive(true);
+        Image3.gameObject.SetActive(true);
+        Image1.sprite = Resources.Load<Sprite>("ironStand");
+        Image2.sprite = Resources.Load<Sprite>("bunsenBurner");
+        Image3.sprite = Resources.Load<Sprite>("matches");
+        Text1.text = "Iron Stand Apparatus";
+        Text2.text = "Bunsen Burner";
+        Text3.text = "Matches";
+
         GetComponent<multihandler>().ToggleCursor();
         Debug.Log(step1Erlenmeyer.transform.name);
         float KOHvol = step1Erlenmeyer.GetComponent<liquidScript>().currentVolume_mL;
@@ -513,6 +569,15 @@ public class progessTracker : MonoBehaviour
             yield return null;
         }
         nextButtonClicked = false;
+
+        //turn off equipment panel stuff
+        Image1.gameObject.SetActive(false);
+        Image2.gameObject.SetActive(false);
+        Image3.gameObject.SetActive(false);
+        Text1.text = "";
+        Text2.text = "";
+        Text3.text = "";
+
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();
     }
@@ -520,6 +585,18 @@ public class progessTracker : MonoBehaviour
     IEnumerator Step4(){
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
+        
+        //Equipment pannel Stuff
+        Image1.gameObject.SetActive(true);
+        Image2.gameObject.SetActive(true);
+        Image3.gameObject.SetActive(true);
+        Image1.sprite = Resources.Load<Sprite>("tongs");
+        Image2.sprite = Resources.Load<Sprite>("funnel");
+        Image3.sprite = Resources.Load<Sprite>("filter");
+        Text1.text = "Iron Tongs";
+        Text2.text = "Glass Funnel";
+        Text3.text = "Paper Filter";
+
         GetComponent<multihandler>().ToggleCursor();
         content.text = "Great! The reaction has proceded as expected. Now it's time to filter out the remaining solid waste. When you are trying to filter out solids to get a liquid product, gravity filtering is the prefered method. ";
         while (!nextButtonClicked){
@@ -536,6 +613,15 @@ public class progessTracker : MonoBehaviour
             yield return null;
         }
         nextButtonClicked = false;
+
+        //turn off equipment panel stuff
+        Image1.gameObject.SetActive(false);
+        Image2.gameObject.SetActive(false);
+        Image3.gameObject.SetActive(false);
+        Text1.text = "";
+        Text2.text = "";
+        Text3.text = "";
+
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();
     }
@@ -543,12 +629,33 @@ public class progessTracker : MonoBehaviour
     IEnumerator Step5(){
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
+
+        //Equipment pannel Stuff
+        Image1.gameObject.SetActive(true);
+        Image2.gameObject.SetActive(true);
+        Image3.gameObject.SetActive(true);
+        Image1.sprite = Resources.Load<Sprite>("beaker");
+        Image2.sprite = Resources.Load<Sprite>("stirRod");
+        Image3.sprite = Resources.Load<Sprite>("graduatedCyllinder");
+        Text1.text = "Beaker";
+        Text2.text = "Glass Stir Rod";
+        Text3.text = "Graduated Cyllinder";
+
         GetComponent<multihandler>().ToggleCursor();
         content.text = "Good work! The filtering looks like it went well. Now, measure out 30 mL of sulfuric acid or H<sub>2</sub>SO<sub>4</sub> into a graduated cylinder as you did in step 2 and add this to an empty beaker (bottom right drawer of each desk). Add your filtered solution to this same beaker. Then, you can stir the solution to break down solids and drive it faster. ";
         while (!nextButtonClicked){
             yield return null;
         }
         nextButtonClicked = false;
+
+        //turn off equipment panel stuff
+        Image1.gameObject.SetActive(false);
+        Image2.gameObject.SetActive(false);
+        Image3.gameObject.SetActive(false);
+        Text1.text = "";
+        Text2.text = "";
+        Text3.text = "";
+
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();
     }
@@ -556,12 +663,27 @@ public class progessTracker : MonoBehaviour
     IEnumerator Step6(){
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
+
+        //Equipment pannel Stuff
+        Image1.gameObject.SetActive(true);
+        Image1.sprite = Resources.Load<Sprite>("bunsenBurner");
+        Text1.text = "Bunsen Burner";
+
         GetComponent<multihandler>().ToggleCursor();
         content.text = "Nice Job! The reaction proceeded as expected. As a precaution, gently heat the reaction to ensure that the Aluminum Hydroxide is dissolved.";
         while (!nextButtonClicked){
             yield return null;
         }
         nextButtonClicked = false;
+
+        //turn off equipment panel stuff
+        Image1.gameObject.SetActive(false);
+        Image2.gameObject.SetActive(false);
+        Image3.gameObject.SetActive(false);
+        Text1.text = "";
+        Text2.text = "";
+        Text3.text = "";
+
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();
     }
@@ -569,11 +691,32 @@ public class progessTracker : MonoBehaviour
     IEnumerator Step7(){
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
+
+        //Equipment pannel Stuff
+        Image1.gameObject.SetActive(true);
+        Image2.gameObject.SetActive(true);
+        Image3.gameObject.SetActive(true);
+        Image1.sprite = Resources.Load<Sprite>("funnel");
+        Image2.sprite = Resources.Load<Sprite>("filter");
+        Image3.sprite = Resources.Load<Sprite>("Flask");
+        Text1.text = "Glass Funnel";
+        Text2.text = "Paper Filter";
+        Text3.text = "Erlenmeyer Flask";
+
         GetComponent<multihandler>().ToggleCursor();
         content.text = "You're really in your element! It looks like there may be some solid impurities in your solution. Use the gravity filter again with a clean peice of filter paper to remove these impurities.";
         while (!nextButtonClicked){
             yield return null;
         }
+
+        //turn off equipment panel stuff
+        Image1.gameObject.SetActive(false);
+        Image2.gameObject.SetActive(false);
+        Image3.gameObject.SetActive(false);
+        Text1.text = "";
+        Text2.text = "";
+        Text3.text = "";
+
         nextButtonClicked = false;
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();
@@ -582,11 +725,26 @@ public class progessTracker : MonoBehaviour
     IEnumerator Step8(){
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
+
+        //Equipment pannel Stuff
+        Image1.gameObject.SetActive(true);
+        Image1.sprite = Resources.Load<Sprite>("iceBath");
+        Text1.text = "Ice Bath";
+
         GetComponent<multihandler>().ToggleCursor();
         content.text = "It looks like you're ready to start crystalization. For this step, place the beaker containing your solution into the ice bath. This will allow the solution to cool and begin to crystalize. ";
         while (!nextButtonClicked){
             yield return null;
         }
+
+        //turn off equipment panel stuff
+        Image1.gameObject.SetActive(false);
+        Image2.gameObject.SetActive(false);
+        Image3.gameObject.SetActive(false);
+        Text1.text = "";
+        Text2.text = "";
+        Text3.text = "";
+
         nextButtonClicked = false;
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();
@@ -595,6 +753,18 @@ public class progessTracker : MonoBehaviour
     IEnumerator Step9(){
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
+
+        //Equipment pannel Stuff
+        Image1.gameObject.SetActive(true);
+        Image2.gameObject.SetActive(true);
+        Image3.gameObject.SetActive(true);
+        Image1.sprite = Resources.Load<Sprite>("buchnerFlask");
+        Image2.sprite = Resources.Load<Sprite>("buchnerFunnel");
+        Image3.sprite = Resources.Load<Sprite>("filter");
+        Text1.text = "Buchner Flask";
+        Text2.text = "Buchner Funnel";
+        Text3.text = "Paper Filter";
+
         GetComponent<multihandler>().ToggleCursor();
         content.text = "Congratulations! Crystalization is complete. Now it is time to use the Buchner funnel to isolate the crystals. First, assemble the Buchner Funnel in the same way that you assembled the glass funnel. Then, right click to attach the hose to the correct position on the sink.";
         while (!nextButtonClicked){
@@ -605,6 +775,15 @@ public class progessTracker : MonoBehaviour
         while (!nextButtonClicked){
             yield return null;
         }
+
+        //turn off equipment panel stuff
+        Image1.gameObject.SetActive(false);
+        Image2.gameObject.SetActive(false);
+        Image3.gameObject.SetActive(false);
+        Text1.text = "";
+        Text2.text = "";
+        Text3.text = "";
+
         nextButtonClicked = false;
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();
@@ -613,11 +792,29 @@ public class progessTracker : MonoBehaviour
     IEnumerator Step10(){
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
+
+        //Equipment pannel Stuff
+        Image1.gameObject.SetActive(true);
+        Image2.gameObject.SetActive(true);
+        Image1.sprite = Resources.Load<Sprite>("scale");
+        Image2.sprite = Resources.Load<Sprite>("beaker");
+        Text1.text = "Scale";
+        Text2.text = "Beaker";
+
         GetComponent<multihandler>().ToggleCursor();
         content.text = "Good Job! Tare out a beaker on the scale and then pour the contents from the paper cone into the tared beaker. This is the mass of your final product. Then, take the solution to Walter and press 'H' to turn it in and have him analyze it. ";
         while (!nextButtonClicked){
             yield return null;
         }
+
+        //turn off equipment panel stuff
+        Image1.gameObject.SetActive(false);
+        Image2.gameObject.SetActive(false);
+        Image3.gameObject.SetActive(false);
+        Text1.text = "";
+        Text2.text = "";
+        Text3.text = "";
+
         nextButtonClicked = false;
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();
@@ -626,6 +823,18 @@ public class progessTracker : MonoBehaviour
     IEnumerator Finished(){
         yield return new WaitForSeconds(1f);
         popUpPanel.SetActive(true);
+
+        //Equipment pannel Stuff
+        Image1.gameObject.SetActive(true);
+        Image2.gameObject.SetActive(true);
+        Image3.gameObject.SetActive(true);
+        Image1.sprite = Resources.Load<Sprite>("capillaryTube");
+        Image2.sprite = Resources.Load<Sprite>("thermometer");
+        Image3.sprite = Resources.Load<Sprite>("rubberBand");
+        Text1.text = "Capillary Tube";
+        Text2.text = "Thermometer";
+        Text3.text = "Rubber Band";
+
         GetComponent<multihandler>().ToggleCursor();
         GameObject finalBeaker = player.GetComponent<pickUpObjects>().other;
         float highestProductAmount = finalBeaker.GetComponent<liquidScript>().currentVolume_mL * finalBeaker.GetComponent<liquidScript>().percentAlum;
@@ -648,6 +857,15 @@ public class progessTracker : MonoBehaviour
         while (!nextButtonClicked){
             yield return null;
         }
+
+        //turn off equipment panel stuff
+        Image1.gameObject.SetActive(false);
+        Image2.gameObject.SetActive(false);
+        Image3.gameObject.SetActive(false);
+        Text1.text = "";
+        Text2.text = "";
+        Text3.text = "";
+        
         nextButtonClicked = false;
         popUpPanel.SetActive(false);
         GetComponent<multihandler>().ToggleCursor();

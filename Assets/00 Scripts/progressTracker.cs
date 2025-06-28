@@ -51,6 +51,17 @@ public class progessTracker : MonoBehaviour
     public TextMeshProUGUI Text1;
     public TextMeshProUGUI Text2;
     public TextMeshProUGUI Text3;
+    public GameObject questionPanel;
+    public TextMeshProUGUI questionText;
+    public GameObject Option1;
+    public GameObject Option2;
+    public GameObject Option3;
+    public GameObject Option4;
+    public TextMeshProUGUI Option1Text;
+    public TextMeshProUGUI Option2Text;
+    public TextMeshProUGUI Option3Text;
+    public TextMeshProUGUI Option4Text;
+    public int optionClicked;
 
 
     // Initialize the first state
@@ -60,6 +71,20 @@ public class progessTracker : MonoBehaviour
         completionScreen = GameObject.Find("Completion Canvas").GetComponentInChildren<CompletionScreen>();
         InGame = Canvases.transform.Find("In Game Canvas").gameObject;
         popUpPanel = InGame.transform.Find("Pop Up Panel").gameObject;
+        questionPanel = InGame.transform.Find("Question Panel").gameObject;
+        questionText = questionPanel.transform.Find("question").GetComponent<TextMeshProUGUI>();
+        Option1 = questionPanel.transform.Find("Option 1").gameObject;
+        Option2 = questionPanel.transform.Find("Option 2").gameObject;
+        Option3 = questionPanel.transform.Find("Option 3").gameObject;
+        Option4 = questionPanel.transform.Find("Option 4").gameObject;
+        Option1.GetComponent<Button>().onClick.AddListener(() => OnOptionClicked(1, Option1));
+        Option2.GetComponent<Button>().onClick.AddListener(() => OnOptionClicked(2, Option2));
+        Option3.GetComponent<Button>().onClick.AddListener(() => OnOptionClicked(3, Option3));
+        Option4.GetComponent<Button>().onClick.AddListener(() => OnOptionClicked(4, Option4));
+        Option1Text = Option1.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+        Option2Text = Option2.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+        Option3Text = Option3.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
+        Option4Text = Option4.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>();
         nextButton = popUpPanel.transform.Find("Next Button").GetComponent<Button>();
         nextButton.onClick.AddListener(nextButtonClick);
         content = popUpPanel.transform.Find("content").GetComponent<TextMeshProUGUI>();
@@ -79,11 +104,18 @@ public class progessTracker : MonoBehaviour
         scrollContent = View.transform.Find("Content").gameObject;
         gogglesPic = Resources.Load<Sprite>("GogglesPic");
         theMULTIHANDLER = GameObject.FindGameObjectWithTag("GameController").GetComponent<multihandler>();
+        optionClicked = 0;
         currentState = LabState.safetyCheck;
         DisplayCurrentState();
         StartCoroutine(Intro());
 
 
+    }
+
+    public void OnOptionClicked(int optionNum, GameObject OptionPanel)
+    {
+        optionClicked = optionNum;
+        OptionPanel.GetComponent<Image>().color = new Color(1f, 0f, 0f, 0.5f);
     }
 
     // Transition to the next state
@@ -145,13 +177,15 @@ public class progessTracker : MonoBehaviour
                 GameObject title7 = scrollContent.transform.Find("Step 7 Title").gameObject;
                 GameObject check7 = title7.transform.Find("Check").gameObject;
                 check6.SetActive(true);
-                if (step1Erlenmeyer.GetComponent<liquidScript>().liquidPercent > 0.95f){
+                if (step1Erlenmeyer.GetComponent<liquidScript>().liquidPercent > 0.95f)
+                {
                     check7.SetActive(true);
                     Debug.Log("Skipping step 7");
                     StartCoroutine(Step8());
                     currentState = LabState.Step8;
                 }
-                else{
+                else
+                {
                     StartCoroutine(Step7());
                     currentState = LabState.Step7;
                 }
@@ -194,7 +228,7 @@ public class progessTracker : MonoBehaviour
                 StartCoroutine(foundMeltingPoint());
                 currentState = LabState.meltingPoint;
                 break; // Do not transition further
-            
+
             case LabState.meltingPoint:
                 return;
         }
@@ -212,7 +246,7 @@ public class progessTracker : MonoBehaviour
     void Update()
     {
         PerformStateActions();
-        if (Pause.activeInHierarchy || popUpPanel.activeInHierarchy){
+        if (Pause.activeInHierarchy || popUpPanel.activeInHierarchy || questionPanel.activeInHierarchy){
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -484,6 +518,38 @@ public class progessTracker : MonoBehaviour
         Text3.text = "";
 
         popUpPanel.SetActive(false);
+
+        //QUESTION 1
+        questionPanel.SetActive(true);
+        questionText.text = "Which of these is an erlenmeyer flask?";
+        Option1Text.text = "";
+        Option2Text.text = "";
+        Option3Text.text = "";
+        Option4Text.text = "";
+        Option1.GetComponent<Image>().sprite = Resources.Load<Sprite>("graduatedCyllinder");
+        Option2.GetComponent<Image>().sprite = Resources.Load<Sprite>("beaker");
+        Option3.GetComponent<Image>().sprite = Resources.Load<Sprite>("Flask");
+        Option4.GetComponent<Image>().sprite = Resources.Load<Sprite>("iceBath");
+
+        while (optionClicked != 3)
+        {
+            yield return null;
+        }
+        optionClicked = 0;
+
+        Option1.GetComponent<Image>().color = Color.white;
+        Option2.GetComponent<Image>().color = Color.white;
+        Option3.GetComponent<Image>().color = Color.white;
+        Option4.GetComponent<Image>().color = Color.white;
+
+        Option1.GetComponent<Image>().sprite = null;
+        Option2.GetComponent<Image>().sprite = null;
+        Option3.GetComponent<Image>().sprite = null;
+        Option4.GetComponent<Image>().sprite = null;
+        questionText.text = "";
+        questionPanel.SetActive(false);
+
+        ////////////
         theMULTIHANDLER.PauseOrUnpause();
         GetComponent<multihandler>().ToggleCursor();
         
@@ -512,6 +578,45 @@ public class progessTracker : MonoBehaviour
             yield return null;
         }
         nextButtonClicked = false;
+
+        popUpPanel.SetActive(false);
+
+        //QUESTION 2
+        questionPanel.SetActive(true);
+        questionText.text = "Next we are going to add the potassium hydroxide to the aluminum. What is the purpose of this?";
+        Option1Text.text = "To act as an oxidizing agent.";
+        Option2Text.text = "To neutralize the sulfuric acid.";
+        Option3Text.text = "To disolve aluminum by forming a soluble complex.";
+        Option4Text.text = "To crystalize the final alum product.";
+
+        while (optionClicked != 3)
+        {
+            yield return null;
+        }
+        optionClicked = 0;
+
+        Option1.GetComponent<Image>().color = Color.white;
+        Option2.GetComponent<Image>().color = Color.white;
+        Option3.GetComponent<Image>().color = Color.white;
+        Option4.GetComponent<Image>().color = Color.white;
+
+        Option1.GetComponent<Image>().sprite = null;
+        Option2.GetComponent<Image>().sprite = null;
+        Option3.GetComponent<Image>().sprite = null;
+        Option4.GetComponent<Image>().sprite = null;
+
+        Option1Text.text = "";
+        Option2Text.text = "";
+        Option3Text.text = "";
+        Option4Text.text = "";
+
+        questionText.text = "";
+        questionPanel.SetActive(false);
+
+        ////////////
+
+        popUpPanel.SetActive(true);
+
         content.text = "CAREFULLY add 25 mL of 20% potassium hydroxide (KOH) to the graduated cylinder. This can be found in the hood next to the shower. If you pick it up, you can hold right click to inspect and view its contents. You can pour from this beaker by holding 'P'. ";
         while (!nextButtonClicked){
             yield return null;
@@ -579,6 +684,41 @@ public class progessTracker : MonoBehaviour
         Text3.text = "";
 
         popUpPanel.SetActive(false);
+
+        //QUESTION 3
+        questionPanel.SetActive(true);
+        questionText.text = "Why should the reaction between aluminum and KOH be done in a fume hood?";
+        Option1Text.text = "Hydrogen gas is flammable and may accumulate.";
+        Option2Text.text = "The reaction releases toxic chlorine gas.";
+        Option3Text.text = "The crystals are light-sensitive.";
+        Option4Text.text = "Sulfur dioxide is produced.";
+
+        while (optionClicked != 1)
+        {
+            yield return null;
+        }
+        optionClicked = 0;
+
+        Option1.GetComponent<Image>().color = Color.white;
+        Option2.GetComponent<Image>().color = Color.white;
+        Option3.GetComponent<Image>().color = Color.white;
+        Option4.GetComponent<Image>().color = Color.white;
+
+        Option1.GetComponent<Image>().sprite = null;
+        Option2.GetComponent<Image>().sprite = null;
+        Option3.GetComponent<Image>().sprite = null;
+        Option4.GetComponent<Image>().sprite = null;
+
+        Option1Text.text = "";
+        Option2Text.text = "";
+        Option3Text.text = "";
+        Option4Text.text = "";
+
+        questionText.text = "";
+
+        questionPanel.SetActive(false);
+
+        ////////////
         GetComponent<multihandler>().ToggleCursor();
     }
 
@@ -657,6 +797,41 @@ public class progessTracker : MonoBehaviour
         Text3.text = "";
 
         popUpPanel.SetActive(false);
+
+        //QUESTION 4
+        questionPanel.SetActive(true);
+        questionText.text = "What safety hazard is associated with sulfuric acid?";
+        Option1Text.text = "It is highly flammable.";
+        Option2Text.text = "It is corrosive and can cause severe burns.";
+        Option3Text.text = "It is radioactive.";
+        Option4Text.text = "It can cause frostbite on contact.";
+
+        while (optionClicked != 2)
+        {
+            yield return null;
+        }
+        optionClicked = 0;
+
+        Option1.GetComponent<Image>().color = Color.white;
+        Option2.GetComponent<Image>().color = Color.white;
+        Option3.GetComponent<Image>().color = Color.white;
+        Option4.GetComponent<Image>().color = Color.white;
+
+        Option1.GetComponent<Image>().sprite = null;
+        Option2.GetComponent<Image>().sprite = null;
+        Option3.GetComponent<Image>().sprite = null;
+        Option4.GetComponent<Image>().sprite = null;
+
+        Option1Text.text = "";
+        Option2Text.text = "";
+        Option3Text.text = "";
+        Option4Text.text = "";
+
+        questionText.text = "";
+        
+        questionPanel.SetActive(false);
+
+        ////////////
         GetComponent<multihandler>().ToggleCursor();
     }
 
@@ -766,7 +941,51 @@ public class progessTracker : MonoBehaviour
         Text3.text = "Paper Filter";
 
         GetComponent<multihandler>().ToggleCursor();
-        content.text = "Congratulations! Crystalization is complete. Now it is time to use the Buchner funnel to isolate the crystals. First, assemble the Buchner Funnel in the same way that you assembled the glass funnel. Then, right click to attach the hose to the correct position on the sink.";
+        content.text = "Congratulations! Crystalization is complete. Now it is time to use the Buchner funnel to isolate the crystals.";
+        while (!nextButtonClicked){
+            yield return null;
+        }
+        nextButtonClicked = false;
+
+        popUpPanel.SetActive(false);
+
+        //QUESTION 5
+        questionPanel.SetActive(true);
+        questionText.text = "Why is buchner filtration preferred over gravity filtration in this part of the lab?";
+        Option1Text.text = "It uses less filter paper.";
+        Option2Text.text = "It heats the solution.";
+        Option3Text.text = "It is faster and more efficient for collecting crystals.";
+        Option4Text.text = "It adds air to the crystals.";
+
+        while (optionClicked != 2)
+        {
+            yield return null;
+        }
+        optionClicked = 0;
+
+        Option1.GetComponent<Image>().color = Color.white;
+        Option2.GetComponent<Image>().color = Color.white;
+        Option3.GetComponent<Image>().color = Color.white;
+        Option4.GetComponent<Image>().color = Color.white;
+
+        Option1.GetComponent<Image>().sprite = null;
+        Option2.GetComponent<Image>().sprite = null;
+        Option3.GetComponent<Image>().sprite = null;
+        Option4.GetComponent<Image>().sprite = null;
+
+        Option1Text.text = "";
+        Option2Text.text = "";
+        Option3Text.text = "";
+        Option4Text.text = "";
+
+        questionText.text = "";
+        
+        questionPanel.SetActive(false);
+
+        ////////////
+
+        popUpPanel.SetActive(true);
+        content.text = "First, assemble the Buchner Funnel in the same way that you assembled the glass funnel. Then, right click to attach the hose to the correct position on the sink.";
         while (!nextButtonClicked){
             yield return null;
         }

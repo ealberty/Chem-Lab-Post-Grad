@@ -128,7 +128,7 @@ public class doCertainThingWith : MonoBehaviour
             }
         }
         if (pickUpScript.other){
-            if (pickUpScript.other.transform.name.StartsWith("Beaker") || pickUpScript.other.transform.name == "Weigh Boat" || pickUpScript.other.transform.name.StartsWith("Erlenmeyer Flask") || pickUpScript.other.transform.name == "Paper Cone" || pickUpScript.other.transform.name == "Pipette" || pickUpScript.other.transform.name == "Graduated Cylinder" || pickUpScript.other.transform.name.StartsWith("Paper Towel") || pickUpScript.other.transform.name.StartsWith("Buchner Flask")){
+            if (pickUpScript.other.transform.name.StartsWith("Beaker") || pickUpScript.other.transform.name == "Weigh Boat" || pickUpScript.other.transform.name.StartsWith("Erlenmeyer Flask") || pickUpScript.other.transform.name == "Paper Cone" || pickUpScript.other.transform.name == "Pipette" || pickUpScript.other.transform.name == "Graduated Cylinder" || pickUpScript.other.transform.name.StartsWith("Paper Towel") || pickUpScript.other.transform.name.StartsWith("Buchner Flask") || pickUpScript.other.transform.name == "Scoopula"){
                 lightUpBeaker();
                 if (pickUpScript.other.GetComponent<liquidScript>()){
                     if (pickUpScript.other.GetComponent<liquidScript>().isPouring){
@@ -1547,6 +1547,13 @@ public class doCertainThingWith : MonoBehaviour
 
         float distFromTip = Vector3.Distance(pipetteTip, beakerOrFlask);
 
+        // Find scoopables object
+        GameObject scoopables = GameObject.Find("Scoopables");
+        if (scoopables == null)
+        {
+            Debug.Log("Cant find scoopables");
+            return;
+        }
         // Find "allLiquidHolders" object
         GameObject allLiquidHolders = GameObject.Find("allLiquidHolders");
         if (allLiquidHolders == null) return; // Avoid errors if it's missing
@@ -1557,55 +1564,90 @@ public class doCertainThingWith : MonoBehaviour
             distanceAllowed = distanceAllowed * 5f;
         }
 
-        foreach (Transform liquidHolder in allLiquidHolders.transform)
+        if (pickUpScript.other.name != "Scoopula")
         {
-            // Retrieve the Liquid script to check the Indrawer flag
-            liquidScript liquidScript = liquidHolder.GetComponent<liquidScript>();
-            if (liquidScript != null && liquidScript.InDrawer) continue; // Skip if the liquid holder is in the drawer
-
-            if (liquidHolder.name.StartsWith("Erlenmeyer Flask"))
+            foreach (Transform liquidHolder in allLiquidHolders.transform)
             {
-                foreach (Transform flaskChild in liquidHolder.transform)
+                // Retrieve the Liquid script to check the Indrawer flag
+                liquidScript liquidScript = liquidHolder.GetComponent<liquidScript>();
+                if (liquidScript != null && liquidScript.InDrawer) continue; // Skip if the liquid holder is in the drawer
+
+                if (liquidHolder.name.StartsWith("Erlenmeyer Flask"))
                 {
-                    if (flaskChild.name.StartsWith("Glass Funnel"))
+                    foreach (Transform flaskChild in liquidHolder.transform)
                     {
-                        foreach (Transform funnelChild in flaskChild.transform)
+                        if (flaskChild.name.StartsWith("Glass Funnel"))
                         {
-                            if (funnelChild.name.StartsWith("Paper Cone"))
+                            foreach (Transform funnelChild in flaskChild.transform)
                             {
-                                GameObject whiteOutline = funnelChild.GetChild(0).gameObject;
-                                bool isClosest = funnelChild.gameObject == closestBeakerOrFlask && distFromTip <= distanceAllowed;
-                                whiteOutline.SetActive(isClosest);
+                                if (funnelChild.name.StartsWith("Paper Cone"))
+                                {
+                                    GameObject whiteOutline = funnelChild.GetChild(0).gameObject;
+                                    bool isClosest = funnelChild.gameObject == closestBeakerOrFlask && distFromTip <= distanceAllowed;
+                                    whiteOutline.SetActive(isClosest);
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            if (liquidHolder.name.StartsWith("Buchner Flask"))
-            {
-                foreach (Transform flaskChild in liquidHolder.transform)
+                if (liquidHolder.name.StartsWith("Buchner Flask"))
                 {
-                    if (flaskChild.name.StartsWith("Buchner Funnel"))
+                    foreach (Transform flaskChild in liquidHolder.transform)
                     {
-                        foreach (Transform funnelChild in flaskChild.transform)
+                        if (flaskChild.name.StartsWith("Buchner Funnel"))
                         {
-                            if (funnelChild.name.StartsWith("Paper Cone"))
+                            foreach (Transform funnelChild in flaskChild.transform)
                             {
-                                GameObject whiteOutline = funnelChild.GetChild(0).gameObject;
-                                bool isClosest = funnelChild.gameObject == closestBeakerOrFlask && distFromTip <= distanceAllowed;
-                                whiteOutline.SetActive(isClosest);
+                                if (funnelChild.name.StartsWith("Paper Cone"))
+                                {
+                                    GameObject whiteOutline = funnelChild.GetChild(0).gameObject;
+                                    bool isClosest = funnelChild.gameObject == closestBeakerOrFlask && distFromTip <= distanceAllowed;
+                                    whiteOutline.SetActive(isClosest);
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            if (liquidHolder.childCount > 0) // Ensure it has children
+                if (liquidHolder.childCount > 0) // Ensure it has children
+                {
+                    GameObject whiteOutline = liquidHolder.GetChild(0).gameObject;
+                    bool isClosest = liquidHolder.gameObject == closestBeakerOrFlask && distFromTip <= distanceAllowed;
+                    whiteOutline.SetActive(isClosest);
+                }
+            }
+        }
+        // in the case that it is a scoopula
+        else
+        {
+            foreach (Transform liquidHolder in scoopables.transform)
             {
-                GameObject whiteOutline = liquidHolder.GetChild(0).gameObject;
-                bool isClosest = liquidHolder.gameObject == closestBeakerOrFlask && distFromTip <= distanceAllowed;
-                whiteOutline.SetActive(isClosest);
+                
+                float minDist = Mathf.Infinity;
+                GameObject closestObject = null;
+        
+                foreach (Transform child in scoopables.transform)
+                {
+                    GameObject currentObject = child.gameObject;
+                    var scoopTip = pickUpScript.other.transform.position; scoopTip.y = 0f;
+                    var scoopCandidate = currentObject.transform.position; scoopCandidate.y = 0f;
+    
+                    float distFromScoopTip = Vector3.Distance(scoopTip, scoopCandidate);
+    
+                    if (distFromTip < minDist)
+                    {
+                        minDist = distFromScoopTip;
+                        closestObject = currentObject;
+                    }
+                }
+
+                if (liquidHolder.childCount > 0) // Ensure it has children
+                {
+                    GameObject whiteOutline = liquidHolder.GetChild(0).gameObject;
+                    bool isClosest = liquidHolder.gameObject == closestObject && distFromTip <= distanceAllowed;
+                    whiteOutline.SetActive(isClosest);
+                }
             }
         }
     }

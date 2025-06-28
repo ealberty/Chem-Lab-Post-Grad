@@ -543,6 +543,9 @@ public class progessTracker : MonoBehaviour
         }
         optionClicked = 0;
 
+        Option3.GetComponent<Image>().color = new Color(0f, 1f, 0f, 0.5f);
+        yield return new WaitForSeconds(1f);
+
         Option1.GetComponent<Image>().color = baseOptionColor;
         Option2.GetComponent<Image>().color = baseOptionColor;
         Option3.GetComponent<Image>().color = baseOptionColor;
@@ -600,6 +603,9 @@ public class progessTracker : MonoBehaviour
             yield return null;
         }
         optionClicked = 0;
+
+        Option3.GetComponent<Image>().color = new Color(0f, 1f, 0f, 0.5f);
+        yield return new WaitForSeconds(1f);
 
         Option1.GetComponent<Image>().color = baseOptionColor;
         Option2.GetComponent<Image>().color = baseOptionColor;
@@ -704,6 +710,9 @@ public class progessTracker : MonoBehaviour
             yield return null;
         }
         optionClicked = 0;
+
+        Option1.GetComponent<Image>().color = new Color(0f, 1f, 0f, 0.5f);
+        yield return new WaitForSeconds(1f);
 
         Option1.GetComponent<Image>().color = baseOptionColor;
         Option2.GetComponent<Image>().color = baseOptionColor;
@@ -817,6 +826,9 @@ public class progessTracker : MonoBehaviour
             yield return null;
         }
         optionClicked = 0;
+
+        Option2.GetComponent<Image>().color = new Color(0f, 1f, 0f, 0.5f);
+        yield return new WaitForSeconds(1f);
 
         Option1.GetComponent<Image>().color = baseOptionColor;
         Option2.GetComponent<Image>().color = baseOptionColor;
@@ -963,11 +975,14 @@ public class progessTracker : MonoBehaviour
         Option3Text.text = "It is faster and more efficient for collecting crystals.";
         Option4Text.text = "It adds air to the crystals.";
 
-        while (optionClicked != 2)
+        while (optionClicked != 3)
         {
             yield return null;
         }
         optionClicked = 0;
+
+        Option3.GetComponent<Image>().color = new Color(0f, 1f, 0f, 0.5f);
+        yield return new WaitForSeconds(1f);
 
         Option1.GetComponent<Image>().color = baseOptionColor;
         Option2.GetComponent<Image>().color = baseOptionColor;

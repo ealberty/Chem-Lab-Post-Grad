@@ -62,6 +62,7 @@ public class progessTracker : MonoBehaviour
     public TextMeshProUGUI Option3Text;
     public TextMeshProUGUI Option4Text;
     public int optionClicked;
+    public Color baseOptionColor;
 
 
     // Initialize the first state
@@ -106,6 +107,7 @@ public class progessTracker : MonoBehaviour
         theMULTIHANDLER = GameObject.FindGameObjectWithTag("GameController").GetComponent<multihandler>();
         optionClicked = 0;
         currentState = LabState.safetyCheck;
+        baseOptionColor = new Color(0.33f, 0.33f, 0.33f, 1f);
         DisplayCurrentState();
         StartCoroutine(Intro());
 
@@ -526,6 +528,10 @@ public class progessTracker : MonoBehaviour
         Option2Text.text = "";
         Option3Text.text = "";
         Option4Text.text = "";
+        Option1.GetComponent<Image>().color = Color.white;
+        Option2.GetComponent<Image>().color = Color.white;
+        Option3.GetComponent<Image>().color = Color.white;
+        Option4.GetComponent<Image>().color = Color.white;
         Option1.GetComponent<Image>().sprite = Resources.Load<Sprite>("graduatedCyllinder");
         Option2.GetComponent<Image>().sprite = Resources.Load<Sprite>("beaker");
         Option3.GetComponent<Image>().sprite = Resources.Load<Sprite>("Flask");
@@ -537,10 +543,10 @@ public class progessTracker : MonoBehaviour
         }
         optionClicked = 0;
 
-        Option1.GetComponent<Image>().color = Color.white;
-        Option2.GetComponent<Image>().color = Color.white;
-        Option3.GetComponent<Image>().color = Color.white;
-        Option4.GetComponent<Image>().color = Color.white;
+        Option1.GetComponent<Image>().color = baseOptionColor;
+        Option2.GetComponent<Image>().color = baseOptionColor;
+        Option3.GetComponent<Image>().color = baseOptionColor;
+        Option4.GetComponent<Image>().color = baseOptionColor;
 
         Option1.GetComponent<Image>().sprite = null;
         Option2.GetComponent<Image>().sprite = null;
@@ -595,10 +601,10 @@ public class progessTracker : MonoBehaviour
         }
         optionClicked = 0;
 
-        Option1.GetComponent<Image>().color = Color.white;
-        Option2.GetComponent<Image>().color = Color.white;
-        Option3.GetComponent<Image>().color = Color.white;
-        Option4.GetComponent<Image>().color = Color.white;
+        Option1.GetComponent<Image>().color = baseOptionColor;
+        Option2.GetComponent<Image>().color = baseOptionColor;
+        Option3.GetComponent<Image>().color = baseOptionColor;
+        Option4.GetComponent<Image>().color = baseOptionColor;
 
         Option1.GetComponent<Image>().sprite = null;
         Option2.GetComponent<Image>().sprite = null;
@@ -699,10 +705,10 @@ public class progessTracker : MonoBehaviour
         }
         optionClicked = 0;
 
-        Option1.GetComponent<Image>().color = Color.white;
-        Option2.GetComponent<Image>().color = Color.white;
-        Option3.GetComponent<Image>().color = Color.white;
-        Option4.GetComponent<Image>().color = Color.white;
+        Option1.GetComponent<Image>().color = baseOptionColor;
+        Option2.GetComponent<Image>().color = baseOptionColor;
+        Option3.GetComponent<Image>().color = baseOptionColor;
+        Option4.GetComponent<Image>().color = baseOptionColor;
 
         Option1.GetComponent<Image>().sprite = null;
         Option2.GetComponent<Image>().sprite = null;
@@ -812,10 +818,10 @@ public class progessTracker : MonoBehaviour
         }
         optionClicked = 0;
 
-        Option1.GetComponent<Image>().color = Color.white;
-        Option2.GetComponent<Image>().color = Color.white;
-        Option3.GetComponent<Image>().color = Color.white;
-        Option4.GetComponent<Image>().color = Color.white;
+        Option1.GetComponent<Image>().color = baseOptionColor;
+        Option2.GetComponent<Image>().color = baseOptionColor;
+        Option3.GetComponent<Image>().color = baseOptionColor;
+        Option4.GetComponent<Image>().color = baseOptionColor;
 
         Option1.GetComponent<Image>().sprite = null;
         Option2.GetComponent<Image>().sprite = null;
@@ -963,10 +969,10 @@ public class progessTracker : MonoBehaviour
         }
         optionClicked = 0;
 
-        Option1.GetComponent<Image>().color = Color.white;
-        Option2.GetComponent<Image>().color = Color.white;
-        Option3.GetComponent<Image>().color = Color.white;
-        Option4.GetComponent<Image>().color = Color.white;
+        Option1.GetComponent<Image>().color = baseOptionColor;
+        Option2.GetComponent<Image>().color = baseOptionColor;
+        Option3.GetComponent<Image>().color = baseOptionColor;
+        Option4.GetComponent<Image>().color = baseOptionColor;
 
         Option1.GetComponent<Image>().sprite = null;
         Option2.GetComponent<Image>().sprite = null;

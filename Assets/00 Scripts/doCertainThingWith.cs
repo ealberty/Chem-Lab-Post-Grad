@@ -1635,7 +1635,7 @@ public class doCertainThingWith : MonoBehaviour
     
                     float distFromScoopTip = Vector3.Distance(scoopTip, scoopCandidate);
     
-                    if (distFromTip < minDist)
+                    if (distFromScoopTip < minDist)
                     {
                         minDist = distFromScoopTip;
                         closestObject = currentObject;
@@ -1658,6 +1658,18 @@ public class doCertainThingWith : MonoBehaviour
         if (allLiquidHolders == null) return; // Avoid errors if it's missing
 
         foreach (Transform liquidHolder in allLiquidHolders.transform)
+        {
+            if (liquidHolder.childCount > 0) // Ensure it has children
+            {
+                GameObject whiteOutline = liquidHolder.GetChild(0).gameObject;
+                whiteOutline.SetActive(false);
+            }
+        }
+
+        GameObject scoopables = GameObject.Find("Scoopables");
+        if (scoopables == null) return; // Avoid errors if it's missing
+
+        foreach (Transform liquidHolder in scoopables.transform)
         {
             if (liquidHolder.childCount > 0) // Ensure it has children
             {

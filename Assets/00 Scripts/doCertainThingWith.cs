@@ -1630,8 +1630,8 @@ public class doCertainThingWith : MonoBehaviour
                 foreach (Transform child in scoopables.transform)
                 {
                     GameObject currentObject = child.gameObject;
-                    var scoopTip = pickUpScript.other.transform.position; scoopTip.y = 0f;
-                    var scoopCandidate = currentObject.transform.position; scoopCandidate.y = 0f;
+                    var scoopTip = pickUpScript.other.transform.position; //scoopTip.y = 0f;
+                    var scoopCandidate = currentObject.transform.position; //scoopCandidate.y = 0f;
     
                     float distFromScoopTip = Vector3.Distance(scoopTip, scoopCandidate);
     

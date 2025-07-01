@@ -259,10 +259,10 @@ public class pickUpObjects : MonoBehaviour
 
     void setHelpTextBasedOnObject(){
         if (other.name == "Matchbox")               multiHandlerScript.setHelpText("Right click to strike a match.");
-        if (other.name == "Iron Ring")              multiHandlerScript.setHelpText("Right click to connect to iron stand.");
+        if (other.name == "Iron Ring")              multiHandlerScript.setHelpText("Scroll to rotate the iron ring. Right click to connect to iron stand.");
         if (other.name == "Iron Mesh")              multiHandlerScript.setHelpText("Right click to connect to iron ring. It must be on the iron stand.");
         if (other.name == "Fire extinguisher")      multiHandlerScript.setHelpText("Right click to use."); 
-        if (other.name == "Tongs")                  multiHandlerScript.setHelpText("Right click to grab a flask.");
+        if (other.name == "Tongs")                  multiHandlerScript.setHelpText("Scroll to rotate the tongs. Right click to grab a flask.");
         if (other.name == "Erlenmeyer Flask 250")   multiHandlerScript.setHelpText("250 mL Erlenmeyer flask");
         if (other.name == "Erlenmeyer Flask 500")   multiHandlerScript.setHelpText("500 mL Erlenmeyer flask");
         if (other.name == "Weigh Boat")             multiHandlerScript.setHelpText("This is a weigh boat. Use it to measure aluminum pellets by placing it on the scale and using the scoopula to transfer the pellets. You can pour its contents into another container with 'P'.");

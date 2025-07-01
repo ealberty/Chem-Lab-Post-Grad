@@ -681,7 +681,7 @@ public class progessTracker : MonoBehaviour
             yield return null;
         }
         nextButtonClicked = false;
-        content.text = "Then manipulate the ceiling vent to get it into position over the iron stand and flip the handle to turn it on. Place the bunsen burner underneath the flask, turn on the gas and light the match. Wait for the solution to heat up and react to an acceptable level.";
+        content.text = "Then manipulate the ceiling vent by clicking and dragging the grey peices to get it into position over the iron stand and flip the handle to turn it on. Place the bunsen burner underneath the flask, turn on the gas and light the match. Wait for the solution to heat up and react to an acceptable level.";
         while (!nextButtonClicked){
             yield return null;
         }
@@ -699,7 +699,7 @@ public class progessTracker : MonoBehaviour
 
         //QUESTION 3
         questionPanel.SetActive(true);
-        questionText.text = "Why should the reaction between aluminum and KOH be done in a fume hood?";
+        questionText.text = "Why should the reaction between aluminum and KOH be done under the ceiling vent?";
         Option1Text.text = "Hydrogen gas is flammable and may accumulate.";
         Option2Text.text = "The reaction releases toxic chlorine gas.";
         Option3Text.text = "The crystals are light-sensitive.";

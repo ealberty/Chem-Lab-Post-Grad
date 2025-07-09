@@ -308,7 +308,7 @@ public class progessTracker : MonoBehaviour
                 foreach (GameObject obj in liquidHolders2)
                 {
                     if (obj.transform.name.StartsWith("Erlenmeyer Flask 250")){
-                        if (obj.GetComponent<liquidScript>().liquidTemperature > 343.15f && obj.GetComponent<liquidScript>().currentVolume_mL > 20f && obj.GetComponent<liquidScript>().percentKAlOH4 > 0.3f){
+                        if (obj.GetComponent<liquidScript>().liquidTemperature > 355.15f && obj.GetComponent<liquidScript>().currentVolume_mL > 20f && obj.GetComponent<liquidScript>().percentKAlOH4 > 0.3f){
                             step1Erlenmeyer = obj;
                             TransitionToNextState();
                         }

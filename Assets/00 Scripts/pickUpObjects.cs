@@ -259,6 +259,7 @@ public class pickUpObjects : MonoBehaviour
 
     void setHelpTextBasedOnObject(){
         if (other.name == "Matchbox")               multiHandlerScript.setHelpText("Right click to strike a match.");
+        if (other.name == "Iron Stand")             multiHandlerScript.setHelpText("Scroll to rotate the iron stand. Retrieve the iron ring and iron mesh and attach them.");
         if (other.name == "Iron Ring")              multiHandlerScript.setHelpText("Scroll to rotate the iron ring. Right click to connect to iron stand.");
         if (other.name == "Iron Mesh")              multiHandlerScript.setHelpText("Right click to connect to iron ring. It must be on the iron stand.");
         if (other.name == "Fire extinguisher")      multiHandlerScript.setHelpText("Right click to use."); 
